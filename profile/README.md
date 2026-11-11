@@ -38,17 +38,23 @@ sample data, no signup.
 ## How it works
 
 ```
-AI coding agent ──► usage via OpenTelemetry ──┐
-                                              ├──► Costpilot ──► cost per issue, epic,
-git branch ──► issue key via the agent hook ──┘                  project, developer, model
+AI coding agent ──► usage via OpenTelemetry ───┐
+                                               │
+git branch ──► issue key via the agent hook ───┼──► Costpilot ──► cost per issue, epic,
+                                               │                  project, developer, model
+Issue tracker ──► title, type, status, epic ───┘
 ```
 
 1. Your **coding agent** exports tokens, model and cost via OpenTelemetry.
 2. The **Costpilot Agent**, installed once per developer machine, reads the
    issue key from the git branch and reports it with every prompt.
-3. The **Costpilot server** joins both, prices the calls and adds issue data
-   from your tracker.
-4. The **dashboard** shows it per project, issue, developer and model.
+3. Your **issue tracker** adds what the key stands for: title, type, status
+   and the epic it belongs to.
+4. The **Costpilot server** joins all three and prices the calls; the
+   **dashboard** shows the result per project, issue, developer and model.
+
+Cost is attributed the moment it happens, from the branch alone. The tracker
+adds names, status and hierarchy on top.
 
 ## Works with
 
