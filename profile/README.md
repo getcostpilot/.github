@@ -24,9 +24,9 @@ sample data, no signup.
   with trends against the previous period.
 - **Automatic attribution**: the issue key on the developer's git branch
   decides where the cost lands. No manual tagging.
-- **Names, types and status from your tracker**: with Jira connected, issues
-  carry their title, type, status and hierarchy. Filter spend by bugs, open
-  work or a whole epic.
+- **Tracker integration**: connect Jira and every issue carries its title,
+  type, status and place in the hierarchy, kept current by a sync. Filter
+  spend by bugs, open work or a whole epic.
 - **Budgets with alerts**: for the whole organisation, a project, a feature,
   a developer or a model. Notifications in the app, by e-mail, to Slack or a
   webhook.
@@ -42,19 +42,20 @@ AI coding agent ──► usage via OpenTelemetry ───┐
                                                │
 git branch ──► issue key via the agent hook ───┼──► Costpilot ──► cost per issue, epic,
                                                │                  project, developer, model
-Issue tracker ──► title, type, status, epic ───┘
+Jira ──► title, type, status, epic (sync) ─────┘
 ```
 
 1. Your **coding agent** exports tokens, model and cost via OpenTelemetry.
 2. The **Costpilot Agent**, installed once per developer machine, reads the
    issue key from the git branch and reports it with every prompt.
-3. Your **issue tracker** adds what the key stands for: title, type, status
-   and the epic it belongs to.
+3. The **tracker integration** syncs what the key stands for from Jira:
+   title, type, status and the epic it belongs to. More trackers follow.
 4. The **Costpilot server** joins all three and prices the calls; the
    **dashboard** shows the result per project, issue, developer and model.
 
-Cost is attributed the moment it happens, from the branch alone. The tracker
-adds names, status and hierarchy on top.
+Cost is attributed the moment it happens, from the branch alone, so it works
+with any tracker. The tracker integration adds names, status and hierarchy on
+top.
 
 ## Works with
 
